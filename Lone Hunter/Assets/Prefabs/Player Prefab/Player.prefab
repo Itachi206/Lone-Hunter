@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2253491846146831441}
   - component: {fileID: 2253491846146831438}
+  - component: {fileID: 642789171}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -50,6 +51,20 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &642789171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2253491846146831439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c6469bbac8f6544a9e783a29afae001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character_Controller: {fileID: 0}
+  look_Root: {fileID: 0}
 --- !u!1 &2253491846364374912
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2253491846679950356}
+  - component: {fileID: 1674412264}
   m_Layer: 0
   m_Name: Look Root
   m_TagString: Untagged
@@ -157,6 +173,23 @@ Transform:
   m_Father: {fileID: 2253491846146831441}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1674412264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2253491846679950357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1405c85ca080d14ea5781637bc9ffe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRoot: {fileID: 2253491846146831441}
+  lookRoot: {fileID: 2253491846679950356}
+  invert_Mouse: 0
+  mouse_sensitivity: 5
+  default_look_limit: {x: -70, y: 80}
 --- !u!1 &2253491847473114879
 GameObject:
   m_ObjectHideFlags: 0
