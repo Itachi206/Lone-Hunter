@@ -64,6 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character_Controller: {fileID: 0}
+  look_Root: {fileID: 0}
 --- !u!1 &2253491846364374912
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,13 +187,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRoot: {fileID: 2253491846146831441}
   lookRoot: {fileID: 2253491846679950356}
-  invert: 0
-  can_UnlockCursor: 1
+  invert_Mouse: 0
   mouse_sensitivity: 5
-  smooth_Steps: 10
-  smooth_weight: 0.4
-  roll_Angle: 10
-  roll_Speed: 3
   default_look_limit: {x: -70, y: 80}
 --- !u!1 &2253491847473114879
 GameObject:

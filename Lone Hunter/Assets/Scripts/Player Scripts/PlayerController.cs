@@ -20,7 +20,7 @@ public class PlayerController
     {
         playerModel.move_direction = new Vector3(Input.GetAxis(Axis.HORIZONTAL), 0f, Input.GetAxis(Axis.VERTICAL));
         playerModel.move_direction = playerView.transform.TransformDirection(playerModel.move_direction);
-        playerModel.move_direction *= playerModel.move_Speed * Time.deltaTime;
+        playerModel.move_direction *= playerModel.player_Speed * Time.deltaTime;
         ApplyGravity();
         playerView.character_Controller.Move(playerModel.move_direction);
     }
@@ -37,6 +37,38 @@ public class PlayerController
         if(playerView.character_Controller.isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             playerModel.vertical_Velocity = playerModel.jump_Force;
+        }
+    }
+
+    public void PlayerSprint()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !playerModel.is_Crouching)
+        {
+            playerModel.player_Speed = playerModel.sprint_Speed;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift) && !playerModel.is_Crouching)
+        {
+            playerModel.player_Speed = playerModel.move_Speed;
+        }
+        Debug.Log(playerModel.player_Speed);
+    }
+
+    public void PlayerCrouch()
+    {
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            if(playerModel.is_Crouching)
+            {
+                playerView.look_Root.localPosition = new Vector3(0f, playerModel.stand_Height, 0f);
+                playerModel.player_Speed = playerModel.move_Speed;
+                playerModel.is_Crouching = false;
+            }
+            else
+            {
+                playerView.look_Root.localPosition = new Vector3(0f, playerModel.crouch_Height, 0f);
+                playerModel.player_Speed = playerModel.crouch_Speed;
+                playerModel.is_Crouching = true;
+            }
         }
     }
 }
