@@ -50,7 +50,6 @@ public class PlayerController
         {
             playerModel.player_Speed = playerModel.move_Speed;
         }
-        Debug.Log(playerModel.player_Speed);
     }
 
     public void PlayerCrouch()
