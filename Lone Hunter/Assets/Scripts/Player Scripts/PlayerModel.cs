@@ -26,4 +26,14 @@ public class PlayerModel
     public float sprint_Value = 100f;
     public float sprint_Threshold = 10f;
 
+    //attack Parameters
+    public float fireRate = 15f;
+    public float nextTimeToFire;
+    public float damage = 20f;
+
+    public bool is_Zoomed;
+    public bool is_Aiming;
+
+    
+
 }

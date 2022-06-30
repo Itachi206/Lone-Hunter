@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponManager : MonoBehaviour
+public class WeaponManager : GenericMonoSingleton<WeaponManager>
 {
     [SerializeField]
     private WeaponHandler[] weapons;
@@ -70,5 +70,6 @@ public class WeaponManager : MonoBehaviour
     public WeaponHandler GetCurrenSelectedWeapon()
     {
         return weapons[current_Weapon_Index];
+
     }
 }

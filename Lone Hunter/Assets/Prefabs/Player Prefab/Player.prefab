@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2253491846146831441
 Transform:
   m_ObjectHideFlags: 0
@@ -66,6 +66,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character_Controller: {fileID: 0}
   look_Root: {fileID: 0}
+  arrow_Prefab: {fileID: 0}
+  spear_prefab: {fileID: 0}
+  arrow_Bow_StartPosition: {fileID: 0}
 --- !u!114 &2140107140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,9 +98,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2253491846364374915}
   - component: {fileID: 2253491846364374914}
+  - component: {fileID: 779245306}
   m_Layer: 6
   m_Name: FP Camera
-  m_TagString: Untagged
+  m_TagString: FP Camera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,6 +163,25 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!95 &779245306
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2253491846364374912}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7fac3fc510d4579498593f6f1429f8d3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2253491846679950357
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +194,7 @@ GameObject:
   - component: {fileID: 1674412264}
   m_Layer: 0
   m_Name: Look Root
-  m_TagString: Untagged
+  m_TagString: Look Root
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2716,14 +2739,14 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 0c4bc943ef0b9cb4480b9af834e2ce7b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bd6bf150a6e08645964bd2baf2a789b, type: 3}
---- !u!1 &2253491847692255406 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100028, guid: 2bd6bf150a6e08645964bd2baf2a789b, type: 3}
-  m_PrefabInstance: {fileID: 2253491847692158482}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2253491847691771022 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400028, guid: 2bd6bf150a6e08645964bd2baf2a789b, type: 3}
+  m_PrefabInstance: {fileID: 2253491847692158482}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2253491847692255406 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100028, guid: 2bd6bf150a6e08645964bd2baf2a789b, type: 3}
   m_PrefabInstance: {fileID: 2253491847692158482}
   m_PrefabAsset: {fileID: 0}
 --- !u!82 &996285163634473167
