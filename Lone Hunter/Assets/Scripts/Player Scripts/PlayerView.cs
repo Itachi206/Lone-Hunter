@@ -13,8 +13,8 @@ public class PlayerView : MonoBehaviour
     internal Animator zoomCameraAnim;
     internal Camera mainCam;
     internal GameObject crosshair;
-    [SerializeField] private GameObject arrow_Prefab, spear_prefab;
-    [SerializeField] private Transform arrow_Bow_StartPosition;
+    public GameObject arrow_Prefab, spear_prefab;
+    public Transform arrow_Bow_StartPosition;
     
 
     private void Awake()
@@ -39,5 +39,15 @@ public class PlayerView : MonoBehaviour
         PlayerController.PlayerCrouch();
         PlayerController.WeaponShoot();
         PlayerController.ZoomInAndOut();
+    }
+
+    internal GameObject InstantiateArrow()
+    {
+        return Instantiate(arrow_Prefab);
+    }
+
+    internal GameObject InstantiateSpear()
+    {
+        return Instantiate(spear_prefab);
     }
 }

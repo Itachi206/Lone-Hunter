@@ -145,13 +145,34 @@ public class PlayerController
         }
     }
 
-    private void ThrowArrowOrSpear(bool a)
+    private void ThrowArrowOrSpear(bool throwArrow)
     {
-        throw new NotImplementedException();
+        if(throwArrow)
+        {
+            GameObject arrow = playerView.InstantiateArrow();
+            arrow.transform.position = playerView.arrow_Bow_StartPosition.position;
+            arrow.GetComponent<ArrowBowScript>().Launch(playerView.mainCam);
+        }
+        else
+        {
+            GameObject spear = playerView.InstantiateSpear();
+            spear.transform.position = playerView.arrow_Bow_StartPosition.position;
+            spear.GetComponent<ArrowBowScript>().Launch(playerView.mainCam);
+        }
     }
 
     private void BulletFired()
     {
-        throw new NotImplementedException();
+        RaycastHit hit;
+        
+        if(Physics.Raycast(playerView.mainCam.transform.position, playerView.mainCam.transform.forward, out hit))
+        {
+
+            Debug.Log("WE HIT " + hit.transform.gameObject.name);
+            //if(hit.transform.tag == Tags.ENEMY_TAG)
+            //{
+            //    hit.transform.GetComponent<HealthScript>().applydamage(damage);
+            //}
+        }
     }
 }
