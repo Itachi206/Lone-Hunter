@@ -136,18 +136,5 @@ public class EnemyController
         {
             enemyModel.enemy_State = EnemyState.CHASE;
         }
-    }
-
-    void Turn_On_AttackPoint()
-    {
-        enemyView.attack_Point.SetActive(true);
-    }
-
-    void Turn_Off_AttackPoint()
-    {
-        if(enemyView.attack_Point.activeInHierarchy)
-        {
-            enemyView.attack_Point.SetActive(false);
-        }
-    }
+    }    
 }

@@ -296,9 +296,9 @@ GameObject:
   - component: {fileID: 1223527019827590918}
   - component: {fileID: 1223527019827591161}
   - component: {fileID: -1161012977539100670}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cannibal
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -418,7 +418,7 @@ MonoBehaviour:
   enemy_Anim: {fileID: 0}
   navAgent: {fileID: 0}
   target: {fileID: 0}
-  attack_Point: {fileID: 0}
+  attack_Point: {fileID: 1783375241077071154}
 --- !u!1 &1223527019878362660
 GameObject:
   m_ObjectHideFlags: 0
@@ -1505,6 +1505,7 @@ Transform:
   - {fileID: 1223527020946461519}
   - {fileID: 1223527020119938354}
   - {fileID: 1223527019961698769}
+  - {fileID: 456738611593163349}
   m_Father: {fileID: 1223527019906786050}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2151,3 +2152,51 @@ Transform:
   m_Father: {fileID: 1223527021078082453}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1783375241077071154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 456738611593163349}
+  - component: {fileID: 5432561054117953879}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &456738611593163349
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783375241077071154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.132, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1223527021077845612}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5432561054117953879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783375241077071154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cd82583d040cd4f97c4a47b07e0e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 2
+  radius: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 256

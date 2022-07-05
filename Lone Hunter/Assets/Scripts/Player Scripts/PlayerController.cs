@@ -87,7 +87,10 @@ public class PlayerController
             if(Input.GetMouseButtonDown(0))
             {
                 if(WeaponManager.Instance.GetCurrenSelectedWeapon().tag == Tags.AXE_TAG)
+                {
                     WeaponManager.Instance.GetCurrenSelectedWeapon().ShootAnimation();
+                }
+
                 if(WeaponManager.Instance.GetCurrenSelectedWeapon().bulletType == WeaponBulletType.BULLET)
                 {
                     WeaponManager.Instance.GetCurrenSelectedWeapon().ShootAnimation();

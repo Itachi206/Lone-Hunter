@@ -6,7 +6,7 @@ using UnityEngine;
 public class WeaponManager : GenericMonoSingleton<WeaponManager>
 {
     [SerializeField]
-    private WeaponHandler[] weapons;
+    private WeaponHandler[] weapons;    
 
     private int current_Weapon_Index;
 
