@@ -8,6 +8,7 @@ TagManager:
   - Look Root
   - FP Camera
   - Arrow
+  - Enemy
   layers:
   - Default
   - TransparentFX

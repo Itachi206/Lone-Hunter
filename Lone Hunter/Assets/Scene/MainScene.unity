@@ -223,8 +223,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184aa3f640aff48499cc4ff8a2faf76e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyView: {fileID: -1161012977539100670, guid: 5c2bbc5db7fc8954db6e6f785abe32b2, type: 3}
+  EnemyPrefab: {fileID: -1161012977539100670, guid: 5c2bbc5db7fc8954db6e6f785abe32b2, type: 3}
+  BoarPrefab: {fileID: 960069779, guid: b073eba56cd342a42a5fda5521a81f03, type: 3}
   enemySO: {fileID: 11400000, guid: 60d9016675eacc04fbdb08b6392cad0e, type: 2}
+  boarSO: {fileID: 11400000, guid: 10e891d12c2c1ba49939dbe9d5a56d1b, type: 2}
 --- !u!1 &1359772741
 GameObject:
   m_ObjectHideFlags: 0

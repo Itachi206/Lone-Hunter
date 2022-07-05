@@ -5,3 +5,9 @@ public enum EnemyState
     CHASE,
     ATTACK
 }
+
+public enum EnemyType
+{
+    Boar,
+    Cannibal
+}

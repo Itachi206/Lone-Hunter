@@ -12,6 +12,9 @@ public class EnemyController
     {
         enemyModel = _enemyModel;
         //enemyView = GameObject.Instantiate<EnemyView>(_enemyView);
+        //if(enemyModel.EnemyType.ToString() == "Cannibal")
+        //    enemyView = GameObject.Instantiate<EnemyView>(_enemyView);
+        //if (enemyModel.EnemyType.ToString() == "Boar")
         enemyView = GameObject.Instantiate<EnemyView>(_enemyView);
 
         enemyView.EnemyController = this;

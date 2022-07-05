@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyModel
 {
+    public EnemyType EnemyType;
     public EnemyState enemy_State;
     public float walk_Speed;
     public float run_Speed;
@@ -27,18 +28,15 @@ public class EnemyModel
          walk_Speed = _enemySO.walk_Speed;
         run_Speed = _enemySO.run_Speed;
 
-        chase_Distance = _enemySO.chase_Distance;
-        current_Chase_Distance = _enemySO.current_Chase_Distance;
+        chase_Distance = _enemySO.chase_Distance;        
 
         patrol_Radius_Min = _enemySO.patrol_Radius_Min;
         patrol_Radius_Max = _enemySO.patrol_Radius_Max;
-        patrol_For_This_Time = _enemySO.patrol_For_This_Time;
-        patrol_Timer = _enemySO.patrol_Timer;
+        patrol_For_This_Time = _enemySO.patrol_For_This_Time;        
 
         attack_Distance = _enemySO.attack_Distance;
         chase_After_Attack_distance = _enemySO.chase_After_Attack_distance;
-        wait_Before_Attack = _enemySO.wait_Before_Attack;
-        attack_Timer = _enemySO.attack_Timer;
+        wait_Before_Attack = _enemySO.wait_Before_Attack;        
     }
 }
 
