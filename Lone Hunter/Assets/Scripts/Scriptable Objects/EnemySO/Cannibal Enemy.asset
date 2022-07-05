@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75d890e90caf8f5458b621bcd6966f62, type: 3}
+  m_Name: Cannibal Enemy
+  m_EditorClassIdentifier: 
+  enemy_State: 1
+  walk_Speed: 0.5
+  run_Speed: 3
+  chase_Distance: 7
+  current_Chase_Distance: 0
+  patrol_Radius_Min: 20
+  patrol_Radius_Max: 60
+  patrol_For_This_Time: 15
+  patrol_Timer: 0
+  attack_Distance: 1.8
+  chase_After_Attack_distance: 2
+  wait_Before_Attack: 2
+  attack_Timer: 0

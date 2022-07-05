@@ -17,21 +17,30 @@ public class PlayerModel
     public float stand_Height = 1.6f;
     public float crouch_Height = 1f;
 
-    public bool is_Crouching;
-
-    public float walk_Step_Distance = 0.4f;
-    public float sprint_Step_Distance = 0.25f;
-    public float crouch_Step_Distance = 0.5f;
-
-    public float sprint_Value = 100f;
-    public float sprint_Threshold = 10f;
-
+    public bool is_Crouching;    
+    
     //attack Parameters
     public float fireRate = 15f;
     public float nextTimeToFire;
     public float damage = 20f;
 
     public bool is_Zoomed;
-    public bool is_Aiming;    
+    public bool is_Aiming;  
+    
+    public PlayerModel(PlayerSO _playerSO)
+    {
+        move_Speed = _playerSO.move_Speed;
+        player_Speed = _playerSO.player_Speed;
+        gravity = _playerSO.gravity;
+        jump_Force = _playerSO.jump_Force;
+
+        crouch_Speed = _playerSO.crouch_Speed;
+        stand_Height = _playerSO.stand_Height;
+        crouch_Height = _playerSO.crouch_Height;    
+        sprint_Speed = _playerSO.sprint_Speed;    
+    
+        fireRate = _playerSO.fireRate;        
+        damage = _playerSO.damage;    
+}
 
 }

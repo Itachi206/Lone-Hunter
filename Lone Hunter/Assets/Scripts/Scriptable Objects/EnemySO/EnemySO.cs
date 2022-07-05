@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu (fileName = "EnemySO", menuName = "Create Scriptable Objects/New Enemy SO")]
 public class EnemySO : ScriptableObject
 {
+    public EnemyState enemy_State;
     [Header("Walk Parameters")]
     public float walk_Speed;
     public float run_Speed;

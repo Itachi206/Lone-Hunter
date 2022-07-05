@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class PlayerService : MonoBehaviour
 {
-    [SerializeField] public PlayerView playerView;
+    [SerializeField] private PlayerView playerView;
+    [SerializeField] private PlayerSO playerSO; 
 
     private void Start()
     {
@@ -14,7 +15,7 @@ public class PlayerService : MonoBehaviour
 
     private void SpawnPlayer()
     {
-        PlayerModel playerModel = new PlayerModel();
+        PlayerModel playerModel = new PlayerModel(playerSO);
         PlayerController playerController = new PlayerController(playerView, playerModel);
     }
 }

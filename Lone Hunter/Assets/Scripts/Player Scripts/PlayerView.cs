@@ -28,8 +28,7 @@ public class PlayerView : MonoBehaviour
 
     private void Update()
     {
-        PlayerMovement();
-        
+        PlayerMovement();        
     }
 
     private void PlayerMovement()
