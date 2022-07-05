@@ -32,8 +32,6 @@ public class PlayerModel
     public float damage = 20f;
 
     public bool is_Zoomed;
-    public bool is_Aiming;
-
-    
+    public bool is_Aiming;    
 
 }
