@@ -65,16 +65,16 @@ public class PlayerController
                 playerModel.player_Speed = playerModel.move_Speed;
             }
 
-            //playerView.Display_StaminaStats(playerModel.sprint_Value);
+            playerView.Display_StaminaStats(playerModel.sprint_Value);
         }
         else
         {
             if(playerModel.sprint_Value != 100f)
             {
                 playerModel.sprint_Value += (playerModel.sprint_ThreShold / 2f) * Time.deltaTime;
-                //playerView.Display_StaminaStats(playerModel.sprint_Value);
+                playerView.Display_StaminaStats(playerModel.sprint_Value);
 
-                if(playerModel.sprint_Value > 100f)
+                if (playerModel.sprint_Value > 100f)
                 {
                     playerModel.sprint_Value = 100f;
                 }
@@ -159,7 +159,7 @@ public class PlayerController
             if (Input.GetMouseButtonUp(1))
             {
                 playerView.zoomCameraAnim.Play(AnimationTags.ZOOM_OUT_ANIM);
-                playerView.crosshair.SetActive(false);
+                playerView.crosshair.SetActive(true);
             }
         }
 
@@ -203,6 +203,7 @@ public class PlayerController
         {
             if (hit.transform.tag == Tags.ENEMY_TAG)
             {
+                Debug.Log("enemy name : " + hit.transform.gameObject.name);
                 hit.transform.GetComponent<EnemyView>().ApplyDamage(WeaponManager.Instance.GetCurrenSelectedWeapon().weaponDamage);
             }
         }
@@ -214,7 +215,8 @@ public class PlayerController
 
         if (hits.Length > 0)
         {
-            hits[0].gameObject.GetComponent<EnemyView>().ApplyDamage(WeaponManager.Instance.GetCurrenSelectedWeapon().weaponDamage);
+            Debug.Log("enemy name : " + hits[1].name);
+            hits[1].gameObject.GetComponent<EnemyView>().ApplyDamage(WeaponManager.Instance.GetCurrenSelectedWeapon().weaponDamage);
 
             playerView.attack_Point.gameObject.SetActive(false);
         }
@@ -239,14 +241,15 @@ public class PlayerController
 
     private void PlayerDied()
     {
-        EnemyView[] enemies = GameObject.FindObjectsOfType<EnemyView>();
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(Tags.ENEMY_TAG);
 
         for(int i = 0; i < enemies.Length; i++)
         {
-            enemies[i].enabled = false;
+            enemies[i].GetComponent<EnemyView>().enabled = false;
         }
 
         playerView.GetComponent<WeaponManager>().GetCurrenSelectedWeapon().gameObject.SetActive(false);
         playerView.enabled = false;
+        Debug.Log("Player is Dead");
     }
 }

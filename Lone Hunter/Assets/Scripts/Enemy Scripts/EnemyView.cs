@@ -13,7 +13,7 @@ public class EnemyView : MonoBehaviour, IDamagable
     public GameObject attack_Point;
     public LayerMask layerMask;
     public float damage = 2f;
-    public float radius = 1f;
+    public float radius = 2f;
 
 
     private void Awake()
@@ -56,6 +56,7 @@ public class EnemyView : MonoBehaviour, IDamagable
 
     public void ApplyDamage(float damage)
     {
+        Debug.Log("apply damage enemy view");
         EnemyController.ApplyDamage(damage);
     }
 

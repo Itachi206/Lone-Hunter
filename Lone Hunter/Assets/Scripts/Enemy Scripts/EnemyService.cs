@@ -12,7 +12,7 @@ public class EnemyService : MonoBehaviour
     void Start()
     {
         SpawnEnemy();
-        SpawnBoar();
+        //SpawnBoar();
     }
 
     private void SpawnEnemy()

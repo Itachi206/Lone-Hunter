@@ -16,13 +16,12 @@ public class PlayerView : MonoBehaviour, IDamagable
     public GameObject arrow_Prefab, spear_prefab;
     public Transform arrow_Bow_StartPosition;
 
-    public GameObject health_Stats, stamina_Stats;
+    private GameObject health_Stats, stamina_Stats;
 
     public GameObject attack_Point;
     public LayerMask layerMask;
     public float damage = 2f;
-    public float radius = 1f;    
-
+    public float radius = 1f;
 
     private void Awake()
     {
@@ -31,6 +30,8 @@ public class PlayerView : MonoBehaviour, IDamagable
         zoomCameraAnim = transform.Find(Tags.LOOK_ROOT).transform.Find(Tags.ZOOM_CAMERA).GetComponent<Animator>();
         crosshair = GameObject.FindWithTag(Tags.CROSSHAIR);
         mainCam = Camera.main;
+        health_Stats = GameObject.FindGameObjectWithTag(Tags.HEALTH_TAG);
+        stamina_Stats = GameObject.FindGameObjectWithTag(Tags.STAMINA_TAG);
     }
 
     private void Update()
@@ -61,7 +62,6 @@ public class PlayerView : MonoBehaviour, IDamagable
     public void Display_StaminaStats(float staminaValue)
     {
         staminaValue /= 100f;
-        print(staminaValue);
         stamina_Stats.GetComponent<Image>().fillAmount = staminaValue;
     }
 

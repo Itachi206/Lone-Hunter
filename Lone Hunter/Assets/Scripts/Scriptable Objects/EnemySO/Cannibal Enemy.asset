@@ -22,6 +22,6 @@ MonoBehaviour:
   patrol_Radius_Min: 20
   patrol_Radius_Max: 60
   patrol_For_This_Time: 15
-  attack_Distance: 1.8
-  chase_After_Attack_distance: 2
+  attack_Distance: 2
+  chase_After_Attack_distance: 1
   wait_Before_Attack: 2

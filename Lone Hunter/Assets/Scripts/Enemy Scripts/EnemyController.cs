@@ -124,6 +124,7 @@ public class EnemyController
         if(enemyModel.attack_Timer > enemyModel.wait_Before_Attack)
         {
             enemyView.enemy_Anim.Attack();
+            EnemyAttack();
             enemyModel.attack_Timer = 0f;
             //attack sound
         }
@@ -136,10 +137,13 @@ public class EnemyController
 
     public void ApplyDamage(float damage)
     {
+        Debug.Log(enemyModel.IsDead);
+        Debug.Log("Enemy Name " + enemyView.gameObject.name + " health : " + enemyModel.health);
         if (enemyModel.IsDead)
             return;
 
         enemyModel.health -= damage;
+
 
         if(enemyModel.enemy_State == EnemyState.PATROL)
         {
