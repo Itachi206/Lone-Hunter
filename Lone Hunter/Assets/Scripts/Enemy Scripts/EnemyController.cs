@@ -137,8 +137,6 @@ public class EnemyController
 
     public void ApplyDamage(float damage)
     {
-        Debug.Log(enemyModel.IsDead);
-        Debug.Log("Enemy Name " + enemyView.gameObject.name + " health : " + enemyModel.health);
         if (enemyModel.IsDead)
             return;
 
@@ -152,8 +150,8 @@ public class EnemyController
 
         if(enemyModel.health <= 0f)
         {
-            EnemyDied();
             enemyModel.IsDead = true;
+            EnemyDied();
         }
     }
 
@@ -163,11 +161,10 @@ public class EnemyController
         {
             enemyView.GetComponent<Animator>().enabled = false;
             enemyView.GetComponent<BoxCollider>().isTrigger = false;
-            enemyView.GetComponent<Rigidbody>().AddTorque(-enemyView.transform.forward * 5f);
             enemyView.navAgent.enabled = false;
             enemyView.enemy_Anim.enabled = false;
-            //enemyView.enabled = false;
-            enemyView.gameObject.SetActive(false);
+            enemyView.StartCoroutine(enemyView.DisableGameObject());
+            enemyView.enabled = false;
         }
 
         if(enemyModel.EnemyType == EnemyType.Boar)
@@ -176,6 +173,7 @@ public class EnemyController
             enemyView.navAgent.isStopped = true;
             enemyView.enemy_Anim.Dead();
             enemyView.enabled = false;
+            enemyView.StartCoroutine(enemyView.DisableGameObject());
         }
     }
 

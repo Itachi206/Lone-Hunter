@@ -215,8 +215,7 @@ public class PlayerController
 
         if (hits.Length > 0)
         {
-            Debug.Log("enemy name : " + hits[1].name);
-            hits[1].gameObject.GetComponent<EnemyView>().ApplyDamage(WeaponManager.Instance.GetCurrenSelectedWeapon().weaponDamage);
+            hits[0].gameObject.GetComponent<EnemyView>().ApplyDamage(WeaponManager.Instance.GetCurrenSelectedWeapon().weaponDamage);
 
             playerView.attack_Point.gameObject.SetActive(false);
         }
@@ -233,8 +232,8 @@ public class PlayerController
 
         if(playerModel.health <= 0f)
         {
-            PlayerDied();
             playerModel.IsDead = true;
+            PlayerDied();
         }
         
     }

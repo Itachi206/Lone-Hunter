@@ -14,6 +14,7 @@ public class EnemyView : MonoBehaviour, IDamagable
     public LayerMask layerMask;
     public float damage = 2f;
     public float radius = 2f;
+    private float wait_For_Seconds_After_Death = 3f;
 
 
     private void Awake()
@@ -56,8 +57,13 @@ public class EnemyView : MonoBehaviour, IDamagable
 
     public void ApplyDamage(float damage)
     {
-        Debug.Log("apply damage enemy view");
         EnemyController.ApplyDamage(damage);
+    }
+
+    public IEnumerator DisableGameObject()
+    {
+        yield return new WaitForSeconds(wait_For_Seconds_After_Death);
+        gameObject.SetActive(false);
     }
 
     void Turn_On_AttackPoint()
