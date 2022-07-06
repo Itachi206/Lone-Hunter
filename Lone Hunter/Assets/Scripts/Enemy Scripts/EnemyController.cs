@@ -163,6 +163,8 @@ public class EnemyController
             enemyView.GetComponent<BoxCollider>().isTrigger = false;
             enemyView.navAgent.enabled = false;
             enemyView.enemy_Anim.enabled = false;
+            enemyModel.enemy_State = EnemyState.PATROL;
+            enemyModel.walk_Speed = 0f;
             enemyView.StartCoroutine(enemyView.DisableGameObject());
             enemyView.enabled = false;
         }

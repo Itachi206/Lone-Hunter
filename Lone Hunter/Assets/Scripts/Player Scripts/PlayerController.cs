@@ -203,8 +203,7 @@ public class PlayerController
         {
             if (hit.transform.tag == Tags.ENEMY_TAG)
             {
-                Debug.Log("enemy name : " + hit.transform.gameObject.name);
-                hit.transform.GetComponent<EnemyView>().ApplyDamage(WeaponManager.Instance.GetCurrenSelectedWeapon().weaponDamage);
+               hit.transform.GetComponent<EnemyView>().ApplyDamage(WeaponManager.Instance.GetCurrenSelectedWeapon().weaponDamage);
             }
         }
     }
