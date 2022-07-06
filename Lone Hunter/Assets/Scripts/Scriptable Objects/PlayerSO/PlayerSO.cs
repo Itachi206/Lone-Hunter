@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerSO", menuName = "Create Scriptable Objects/New Player SO")]
 public class PlayerSO : ScriptableObject
 {
+    public float health;
     [Header("Movement Parameters")]
     public float move_Speed;
     public float player_Speed;

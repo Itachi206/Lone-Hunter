@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerModel
 {
+    public float health;
     public Vector3 move_direction;
     public float move_Speed = 4f;
     public float player_Speed = 4f;
@@ -24,11 +25,13 @@ public class PlayerModel
     public float nextTimeToFire;
     public float damage = 20f;
 
+    public bool IsDead;
     public bool is_Zoomed;
     public bool is_Aiming;  
     
     public PlayerModel(PlayerSO _playerSO)
     {
+        health = _playerSO.health;
         move_Speed = _playerSO.move_Speed;
         player_Speed = _playerSO.player_Speed;
         gravity = _playerSO.gravity;
@@ -41,6 +44,6 @@ public class PlayerModel
     
         fireRate = _playerSO.fireRate;        
         damage = _playerSO.damage;    
-}
+    }
 
 }

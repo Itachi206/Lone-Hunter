@@ -11,10 +11,6 @@ public class EnemyController
     public EnemyController(EnemyView _enemyView, EnemyModel _enemyModel)
     {
         enemyModel = _enemyModel;
-        //enemyView = GameObject.Instantiate<EnemyView>(_enemyView);
-        //if(enemyModel.EnemyType.ToString() == "Cannibal")
-        //    enemyView = GameObject.Instantiate<EnemyView>(_enemyView);
-        //if (enemyModel.EnemyType.ToString() == "Boar")
         enemyView = GameObject.Instantiate<EnemyView>(_enemyView);
 
         enemyView.EnemyController = this;
@@ -137,4 +133,44 @@ public class EnemyController
             enemyModel.enemy_State = EnemyState.CHASE;
         }
     }    
+
+    public void ApplyDamage(float damage)
+    {
+        if (enemyModel.IsDead)
+            return;
+
+        enemyModel.health -= damage;
+
+        if(enemyModel.enemy_State == EnemyState.PATROL)
+        {
+            enemyModel.chase_Distance = 50f;
+        }
+
+        if(enemyModel.health <= 0f)
+        {
+            EnemyDied();
+            enemyModel.IsDead = true;
+        }
+    }
+
+    private void EnemyDied()
+    {
+        if(enemyModel.EnemyType == EnemyType.Cannibal)
+        {
+            enemyView.GetComponent<Animator>().enabled = false;
+            enemyView.GetComponent<BoxCollider>().isTrigger = false;
+            enemyView.GetComponent<Rigidbody>().AddTorque(-enemyView.transform.forward * 5f);
+            enemyView.navAgent.enabled = false;
+            enemyView.enemy_Anim.enabled = false;
+            enemyView.enabled = false;
+        }
+
+        if(enemyModel.EnemyType == EnemyType.Boar)
+        {
+            enemyView.navAgent.velocity = Vector3.zero;
+            enemyView.navAgent.isStopped = true;
+            enemyView.enemy_Anim.Dead();
+            enemyView.enabled = false;
+        }
+    }
 }

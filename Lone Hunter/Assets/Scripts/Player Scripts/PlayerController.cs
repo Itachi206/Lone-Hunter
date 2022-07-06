@@ -170,12 +170,40 @@ public class PlayerController
         
         if(Physics.Raycast(playerView.mainCam.transform.position, playerView.mainCam.transform.forward, out hit))
         {
-
-            Debug.Log("WE HIT " + hit.transform.gameObject.name);
-            //if(hit.transform.tag == Tags.ENEMY_TAG)
-            //{
-            //    hit.transform.GetComponent<HealthScript>().applydamage(damage);
-            //}
+            if (hit.transform.tag == Tags.ENEMY_TAG)
+            {
+                hit.transform.GetComponent<EnemyView>().ApplyDamage(WeaponManager.Instance.GetCurrenSelectedWeapon().weaponDamage);
+            }
         }
+    }
+
+    public void ApplyDamage(float damage)
+    {
+        if (playerModel.IsDead)
+            return;
+
+        playerModel.health -= damage;
+
+        playerView.Display_HealthStats(playerModel.health);
+
+        if(playerModel.health <= 0f)
+        {
+            PlayerDied();
+            playerModel.IsDead = true;
+        }
+        
+    }
+
+    private void PlayerDied()
+    {
+        EnemyView[] enemies = GameObject.FindObjectsOfType<EnemyView>();
+
+        for(int i = 0; i < enemies.Length; i++)
+        {
+            enemies[i].enabled = false;
+        }
+
+        playerView.GetComponent<WeaponManager>().GetCurrenSelectedWeapon().gameObject.SetActive(false);
+        playerView.enabled = false;
     }
 }

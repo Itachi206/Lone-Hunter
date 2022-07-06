@@ -6,6 +6,10 @@ public class EnemyModel
 {
     public EnemyType EnemyType;
     public EnemyState enemy_State;
+
+    public float health;
+    public bool IsDead;
+
     public float walk_Speed;
     public float run_Speed;
 
@@ -25,6 +29,8 @@ public class EnemyModel
     public EnemyModel(EnemySO _enemySO)
     {
         enemy_State = _enemySO.enemy_State;
+        health = _enemySO.health;
+
          walk_Speed = _enemySO.walk_Speed;
         run_Speed = _enemySO.run_Speed;
 

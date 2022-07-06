@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e5088414fb64f043b94c9876acac247, type: 3}
   m_Name: PlayerSO
   m_EditorClassIdentifier: 
+  health: 100
   move_Speed: 4
   player_Speed: 4
   gravity: 20
@@ -21,4 +22,4 @@ MonoBehaviour:
   crouch_Height: 1
   sprint_Speed: 8
   fireRate: 15
-  damage: 20
+  damage: 50

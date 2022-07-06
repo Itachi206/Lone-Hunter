@@ -148,6 +148,8 @@ MonoBehaviour:
   arrow_Prefab: {fileID: 2387690258247507848, guid: 98f8dbf89a91b50429585615bc3e9673, type: 3}
   spear_prefab: {fileID: 5075723844988779935, guid: c7b6ec226455b3d41ae00b6ec18274cb, type: 3}
   arrow_Bow_StartPosition: {fileID: 391899508}
+  health_Stats: {fileID: 0}
+  stamina_Stats: {fileID: 0}
 --- !u!114 &2140107140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -745,6 +747,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   shootSound: {fileID: 0}
   reload_Sound: {fileID: 0}
+  weaponDamage: 30
   weapon_Aim: 1
   fireType: 0
   bulletType: 3
@@ -1263,6 +1266,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   shootSound: {fileID: 239164311057744304}
   reload_Sound: {fileID: 9149082231241624450}
+  weaponDamage: 25
   weapon_Aim: 2
   fireType: 0
   bulletType: 1
@@ -1673,6 +1677,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   shootSound: {fileID: 7669245125457397388}
   reload_Sound: {fileID: 0}
+  weaponDamage: 10
   weapon_Aim: 2
   fireType: 1
   bulletType: 1
@@ -2087,6 +2092,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   shootSound: {fileID: 0}
   reload_Sound: {fileID: 0}
+  weaponDamage: 30
   weapon_Aim: 1
   fireType: 0
   bulletType: 2
@@ -2136,7 +2142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100014, guid: ded3362b8b3b82243b3043bb355c770c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100014, guid: ded3362b8b3b82243b3043bb355c770c, type: 3}
       propertyPath: m_TagString
@@ -2998,6 +3004,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   shootSound: {fileID: 6068543402699438764}
   reload_Sound: {fileID: 0}
+  weaponDamage: 50
   weapon_Aim: 0
   fireType: 0
   bulletType: 0
@@ -3464,6 +3471,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   shootSound: {fileID: 996285163634473167}
   reload_Sound: {fileID: 0}
+  weaponDamage: 15
   weapon_Aim: 2
   fireType: 0
   bulletType: 1

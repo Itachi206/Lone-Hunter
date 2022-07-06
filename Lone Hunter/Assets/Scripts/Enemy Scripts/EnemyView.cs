@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyView : MonoBehaviour
+public class EnemyView : MonoBehaviour, IDamagable
 {
     public EnemyController EnemyController;
     [HideInInspector] public EnemyAnimator enemy_Anim;
@@ -49,6 +49,11 @@ public class EnemyView : MonoBehaviour
         {
             EnemyController.AttackState();
         }
+    }
+
+    public void ApplyDamage(float damage)
+    {
+        EnemyController.ApplyDamage(damage);
     }
 
     void Turn_On_AttackPoint()
