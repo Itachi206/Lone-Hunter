@@ -20,6 +20,8 @@ MonoBehaviour:
   crouch_Speed: 1.5
   stand_Height: 1.6
   crouch_Height: 1
-  sprint_Speed: 8
+  sprint_Speed: 10
+  sprint_Value: 100
+  sprint_ThreShold: 10
   fireRate: 15
   damage: 50

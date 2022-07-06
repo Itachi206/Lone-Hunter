@@ -15,6 +15,7 @@ MonoBehaviour:
   EnemyType: 0
   enemy_State: 1
   health: 50
+  damage: 25
   walk_Speed: 1.5
   run_Speed: 5
   chase_Distance: 7

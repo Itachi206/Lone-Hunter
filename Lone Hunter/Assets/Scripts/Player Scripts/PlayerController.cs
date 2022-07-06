@@ -42,14 +42,44 @@ public class PlayerController
 
     public void PlayerSprint()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !playerModel.is_Crouching)
+        if (playerModel.sprint_Value > 0f)
         {
-            playerModel.player_Speed = playerModel.sprint_Speed;
+            if (Input.GetKeyDown(KeyCode.LeftShift) && !playerModel.is_Crouching)
+            {
+                playerModel.player_Speed = playerModel.sprint_Speed;
+            }
         }
+
         if (Input.GetKeyUp(KeyCode.LeftShift) && !playerModel.is_Crouching)
         {
             playerModel.player_Speed = playerModel.move_Speed;
         }
+
+        if(Input.GetKey(KeyCode.LeftShift) && !playerModel.is_Crouching)
+        {
+            playerModel.sprint_Value -= playerModel.sprint_ThreShold * Time.deltaTime;
+
+            if(playerModel.sprint_Value <= 0f)
+            {
+                playerModel.sprint_Value = 0f;
+                playerModel.player_Speed = playerModel.move_Speed;
+            }
+
+            //playerView.Display_StaminaStats(playerModel.sprint_Value);
+        }
+        else
+        {
+            if(playerModel.sprint_Value != 100f)
+            {
+                playerModel.sprint_Value += (playerModel.sprint_ThreShold / 2f) * Time.deltaTime;
+                //playerView.Display_StaminaStats(playerModel.sprint_Value);
+
+                if(playerModel.sprint_Value > 100f)
+                {
+                    playerModel.sprint_Value = 100f;
+                }
+            }
+        }        
     }
 
     public void PlayerCrouch()
@@ -89,6 +119,7 @@ public class PlayerController
                 if(WeaponManager.Instance.GetCurrenSelectedWeapon().tag == Tags.AXE_TAG)
                 {
                     WeaponManager.Instance.GetCurrenSelectedWeapon().ShootAnimation();
+                    MeleeAttack();
                 }
 
                 if(WeaponManager.Instance.GetCurrenSelectedWeapon().bulletType == WeaponBulletType.BULLET)
@@ -174,6 +205,18 @@ public class PlayerController
             {
                 hit.transform.GetComponent<EnemyView>().ApplyDamage(WeaponManager.Instance.GetCurrenSelectedWeapon().weaponDamage);
             }
+        }
+    }
+
+    public void MeleeAttack()
+    {
+        Collider[] hits = Physics.OverlapSphere(playerView.attack_Point.transform.position, playerView.radius, playerView.layerMask);
+
+        if (hits.Length > 0)
+        {
+            hits[0].gameObject.GetComponent<EnemyView>().ApplyDamage(WeaponManager.Instance.GetCurrenSelectedWeapon().weaponDamage);
+
+            playerView.attack_Point.gameObject.SetActive(false);
         }
     }
 

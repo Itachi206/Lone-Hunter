@@ -11,7 +11,10 @@ public class EnemyView : MonoBehaviour, IDamagable
 
     [HideInInspector] public Transform target;
     public GameObject attack_Point;
-   
+    public LayerMask layerMask;
+    public float damage = 2f;
+    public float radius = 1f;
+
 
     private void Awake()
     {
@@ -61,7 +64,7 @@ public class EnemyView : MonoBehaviour, IDamagable
         attack_Point.SetActive(true);
     }
 
-    void Turn_Off_AttackPoint()
+    public void Turn_Off_AttackPoint()
     {
         if (attack_Point.activeInHierarchy)
         {

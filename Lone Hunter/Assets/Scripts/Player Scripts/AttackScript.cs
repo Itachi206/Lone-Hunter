@@ -15,7 +15,16 @@ public class AttackScript : MonoBehaviour
 
         if(hits.Length > 0)
         {
-            hits[0].gameObject.GetComponent<EnemyView>().EnemyController.ApplyDamage(damage);
+            if (hits[0].gameObject.tag == Tags.PLAYER_TAG)
+            {
+                hits[0].gameObject.GetComponent<PlayerView>().ApplyDamage(hits[0].gameObject.GetComponent<PlayerView>().PlayerController.playerModel.damage);
+            }
+
+            if (hits[0].gameObject.tag == Tags.ENEMY_TAG)
+            {
+                hits[0].gameObject.GetComponent<EnemyView>().ApplyDamage(hits[0].gameObject.GetComponent<EnemyView>().EnemyController.enemyModel.damage);
+            }
+
             gameObject.SetActive(false);
         }
     }

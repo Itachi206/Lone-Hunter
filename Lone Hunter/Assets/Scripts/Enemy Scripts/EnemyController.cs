@@ -162,7 +162,8 @@ public class EnemyController
             enemyView.GetComponent<Rigidbody>().AddTorque(-enemyView.transform.forward * 5f);
             enemyView.navAgent.enabled = false;
             enemyView.enemy_Anim.enabled = false;
-            enemyView.enabled = false;
+            //enemyView.enabled = false;
+            enemyView.gameObject.SetActive(false);
         }
 
         if(enemyModel.EnemyType == EnemyType.Boar)
@@ -171,6 +172,18 @@ public class EnemyController
             enemyView.navAgent.isStopped = true;
             enemyView.enemy_Anim.Dead();
             enemyView.enabled = false;
+        }
+    }
+
+    public void EnemyAttack()
+    {
+        Collider[] hits = Physics.OverlapSphere(enemyView.attack_Point.transform.position, enemyView.radius, enemyView.layerMask);
+
+        if (hits.Length > 0)
+        {
+            hits[0].gameObject.GetComponent<PlayerView>().ApplyDamage(enemyModel.damage);
+         
+            enemyView.Turn_Off_AttackPoint();
         }
     }
 }

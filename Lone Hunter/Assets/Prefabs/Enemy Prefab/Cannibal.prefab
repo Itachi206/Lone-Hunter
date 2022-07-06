@@ -417,8 +417,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy_Anim: {fileID: 0}
   navAgent: {fileID: 0}
-  target: {fileID: 0}
+  target: {fileID: 2253491846146831441, guid: 59f7ae3a498418046b8bfdf824631121, type: 3}
   attack_Point: {fileID: 1783375241077071154}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  damage: 2
+  radius: 1
 --- !u!1 &1223527019878362660
 GameObject:
   m_ObjectHideFlags: 0
@@ -2168,7 +2173,7 @@ GameObject:
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &456738611593163349
 Transform:
   m_ObjectHideFlags: 0
@@ -2190,7 +2195,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783375241077071154}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73cd82583d040cd4f97c4a47b07e0e5b, type: 3}
   m_Name: 

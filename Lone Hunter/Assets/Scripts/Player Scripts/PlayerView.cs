@@ -16,8 +16,13 @@ public class PlayerView : MonoBehaviour, IDamagable
     public GameObject arrow_Prefab, spear_prefab;
     public Transform arrow_Bow_StartPosition;
 
-    [SerializeField] private Image health_Stats, stamina_Stats;
-    
+    public GameObject health_Stats, stamina_Stats;
+
+    public GameObject attack_Point;
+    public LayerMask layerMask;
+    public float damage = 2f;
+    public float radius = 1f;    
+
 
     private void Awake()
     {
@@ -50,13 +55,14 @@ public class PlayerView : MonoBehaviour, IDamagable
     public void Display_HealthStats(float healthValue)
     {
         healthValue /= 100f;
-        health_Stats.fillAmount = healthValue;
+        health_Stats.GetComponent<Image>().fillAmount = healthValue;
     }
 
     public void Display_StaminaStats(float staminaValue)
     {
         staminaValue /= 100f;
-        stamina_Stats.fillAmount = staminaValue;
+        print(staminaValue);
+        stamina_Stats.GetComponent<Image>().fillAmount = staminaValue;
     }
 
     internal GameObject InstantiateArrow()
