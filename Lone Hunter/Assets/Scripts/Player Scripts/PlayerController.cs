@@ -246,8 +246,11 @@ public class PlayerController
             enemies[i].GetComponent<EnemyView>().enabled = false;
         }
 
+        EnemyService.Instance.StopSpawning();
         playerView.GetComponent<WeaponManager>().GetCurrenSelectedWeapon().gameObject.SetActive(false);
         playerView.enabled = false;
         Debug.Log("Player is Dead");
+
+        //Game Over Screen is here with restart option
     }
 }

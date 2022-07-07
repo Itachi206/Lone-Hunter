@@ -8,10 +8,11 @@ public class EnemyController
 {
     public EnemyView enemyView;
     public EnemyModel enemyModel;
-    public EnemyController(EnemyView _enemyView, EnemyModel _enemyModel)
+    public EnemyController(EnemyView _enemyView, EnemyModel _enemyModel, Vector3 position)
     {
         enemyModel = _enemyModel;
-        enemyView = GameObject.Instantiate<EnemyView>(_enemyView);
+        enemyView = GameObject.Instantiate<EnemyView>(_enemyView, position, Quaternion.identity);
+        
 
         enemyView.EnemyController = this;
     }
@@ -167,6 +168,7 @@ public class EnemyController
             enemyModel.walk_Speed = 0f;
             enemyView.StartCoroutine(enemyView.DisableGameObject());
             enemyView.enabled = false;
+            EnemyService.Instance.EnemyDied(true);
         }
 
         if(enemyModel.EnemyType == EnemyType.Boar)
@@ -176,6 +178,7 @@ public class EnemyController
             enemyView.enemy_Anim.Dead();
             enemyView.enabled = false;
             enemyView.StartCoroutine(enemyView.DisableGameObject());
+            EnemyService.Instance.EnemyDied(false);
         }
     }
 
