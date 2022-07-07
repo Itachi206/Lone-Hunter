@@ -39,7 +39,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1580096865}
-  - component: {fileID: 1580096866}
   m_Layer: 6
   m_Name: Attack Point
   m_TagString: Untagged
@@ -61,23 +60,6 @@ Transform:
   m_Father: {fileID: 2253491847643372450}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 4.622, y: 87.982, z: 93.702}
---- !u!114 &1580096866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1580096864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73cd82583d040cd4f97c4a47b07e0e5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 2
-  radius: 1
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!1 &2253491846146831439
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,8 +70,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2253491846146831441}
   - component: {fileID: 2253491846146831438}
-  - component: {fileID: 642789171}
   - component: {fileID: 2140107140}
+  - component: {fileID: 6528365885668915371}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -105,7 +87,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2253491846146831439}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 45, y: 20.88, z: 113.55}
+  m_LocalPosition: {x: 78.74333, y: 27.389, z: 168.3208}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2253491846679950356}
@@ -131,23 +113,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &642789171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2253491846146831439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c6469bbac8f6544a9e783a29afae001, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  character_Controller: {fileID: 0}
-  look_Root: {fileID: 0}
-  arrow_Prefab: {fileID: 2387690258247507848, guid: 98f8dbf89a91b50429585615bc3e9673, type: 3}
-  spear_prefab: {fileID: 5075723844988779935, guid: c7b6ec226455b3d41ae00b6ec18274cb, type: 3}
-  arrow_Bow_StartPosition: {fileID: 391899508}
 --- !u!114 &2140107140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,6 +132,29 @@ MonoBehaviour:
   - {fileID: 1972657219}
   - {fileID: 1563905461}
   - {fileID: 461515737}
+--- !u!114 &6528365885668915371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2253491846146831439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c6469bbac8f6544a9e783a29afae001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character_Controller: {fileID: 0}
+  look_Root: {fileID: 0}
+  arrow_Prefab: {fileID: 2387690258247507848, guid: 98f8dbf89a91b50429585615bc3e9673, type: 3}
+  spear_prefab: {fileID: 5075723844988779935, guid: c7b6ec226455b3d41ae00b6ec18274cb, type: 3}
+  arrow_Bow_StartPosition: {fileID: 391899508}
+  attack_Point: {fileID: 1580096864}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  damage: 2
+  radius: 1
 --- !u!1 &2253491846364374912
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +298,7 @@ MonoBehaviour:
   playerRoot: {fileID: 2253491846146831441}
   lookRoot: {fileID: 2253491846679950356}
   invert_Mouse: 0
-  mouse_sensitivity: 5
+  mouse_sensitivity: 4
   default_look_limit: {x: -70, y: 80}
 --- !u!1 &2253491847473114879
 GameObject:
@@ -720,14 +708,14 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: de815c610e27f0e4b9268666d6442155, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f01a880f7473c2546b3ff80815537299, type: 3}
---- !u!4 &2253491846167224903 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400026, guid: f01a880f7473c2546b3ff80815537299, type: 3}
-  m_PrefabInstance: {fileID: 2253491846167623901}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2253491846167592551 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100026, guid: f01a880f7473c2546b3ff80815537299, type: 3}
+  m_PrefabInstance: {fileID: 2253491846167623901}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2253491846167224903 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400026, guid: f01a880f7473c2546b3ff80815537299, type: 3}
   m_PrefabInstance: {fileID: 2253491846167623901}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1563905461
@@ -745,6 +733,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   shootSound: {fileID: 0}
   reload_Sound: {fileID: 0}
+  weaponDamage: 30
   weapon_Aim: 1
   fireType: 0
   bulletType: 3
@@ -1263,6 +1252,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   shootSound: {fileID: 239164311057744304}
   reload_Sound: {fileID: 9149082231241624450}
+  weaponDamage: 25
   weapon_Aim: 2
   fireType: 0
   bulletType: 1
@@ -1673,6 +1663,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   shootSound: {fileID: 7669245125457397388}
   reload_Sound: {fileID: 0}
+  weaponDamage: 10
   weapon_Aim: 2
   fireType: 1
   bulletType: 1
@@ -2087,6 +2078,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   shootSound: {fileID: 0}
   reload_Sound: {fileID: 0}
+  weaponDamage: 30
   weapon_Aim: 1
   fireType: 0
   bulletType: 2
@@ -2136,7 +2128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100014, guid: ded3362b8b3b82243b3043bb355c770c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100014, guid: ded3362b8b3b82243b3043bb355c770c, type: 3}
       propertyPath: m_TagString
@@ -2998,6 +2990,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   shootSound: {fileID: 6068543402699438764}
   reload_Sound: {fileID: 0}
+  weaponDamage: 50
   weapon_Aim: 0
   fireType: 0
   bulletType: 0
@@ -3343,14 +3336,14 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 0c4bc943ef0b9cb4480b9af834e2ce7b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bd6bf150a6e08645964bd2baf2a789b, type: 3}
---- !u!1 &2253491847692255406 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100028, guid: 2bd6bf150a6e08645964bd2baf2a789b, type: 3}
-  m_PrefabInstance: {fileID: 2253491847692158482}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2253491847691771022 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400028, guid: 2bd6bf150a6e08645964bd2baf2a789b, type: 3}
+  m_PrefabInstance: {fileID: 2253491847692158482}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2253491847692255406 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100028, guid: 2bd6bf150a6e08645964bd2baf2a789b, type: 3}
   m_PrefabInstance: {fileID: 2253491847692158482}
   m_PrefabAsset: {fileID: 0}
 --- !u!82 &996285163634473167
@@ -3464,6 +3457,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   shootSound: {fileID: 996285163634473167}
   reload_Sound: {fileID: 0}
+  weaponDamage: 15
   weapon_Aim: 2
   fireType: 0
   bulletType: 1

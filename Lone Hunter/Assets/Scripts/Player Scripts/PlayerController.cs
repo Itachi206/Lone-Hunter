@@ -42,14 +42,46 @@ public class PlayerController
 
     public void PlayerSprint()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !playerModel.is_Crouching)
+        if (playerModel.sprint_Value > 0f)
         {
-            playerModel.player_Speed = playerModel.sprint_Speed;
+            if (Input.GetKeyDown(KeyCode.LeftShift) && !playerModel.is_Crouching)
+            {
+                playerModel.player_Speed = playerModel.sprint_Speed;
+            }
         }
+
         if (Input.GetKeyUp(KeyCode.LeftShift) && !playerModel.is_Crouching)
         {
             playerModel.player_Speed = playerModel.move_Speed;
         }
+
+        if(Input.GetKey(KeyCode.LeftShift) && !playerModel.is_Crouching)
+        {
+            playerModel.sprint_Value -= playerModel.sprint_ThreShold * Time.deltaTime;
+
+            if(playerModel.sprint_Value <= 0f)
+            {
+                playerModel.sprint_Value = 0f;
+                playerModel.player_Speed = playerModel.move_Speed;
+            }
+
+            //playerView.Display_StaminaStats(playerModel.sprint_Value);
+            GameManager.Instance.Display_StaminaStats(playerModel.sprint_Value);
+        }
+        else
+        {
+            if(playerModel.sprint_Value != 100f)
+            {
+                playerModel.sprint_Value += (playerModel.sprint_ThreShold / 2f) * Time.deltaTime;
+                //playerView.Display_StaminaStats(playerModel.sprint_Value);
+                GameManager.Instance.Display_StaminaStats(playerModel.sprint_Value);
+
+                if (playerModel.sprint_Value > 100f)
+                {
+                    playerModel.sprint_Value = 100f;
+                }
+            }
+        }        
     }
 
     public void PlayerCrouch()
@@ -89,6 +121,7 @@ public class PlayerController
                 if(WeaponManager.Instance.GetCurrenSelectedWeapon().tag == Tags.AXE_TAG)
                 {
                     WeaponManager.Instance.GetCurrenSelectedWeapon().ShootAnimation();
+                    MeleeAttack();
                 }
 
                 if(WeaponManager.Instance.GetCurrenSelectedWeapon().bulletType == WeaponBulletType.BULLET)
@@ -111,6 +144,19 @@ public class PlayerController
                             ThrowArrowOrSpear(false);
                         }
                     }
+                    else
+                    {
+                        WeaponManager.Instance.GetCurrenSelectedWeapon().ShootAnimation();
+
+                        if (WeaponManager.Instance.GetCurrenSelectedWeapon().bulletType == WeaponBulletType.ARROW)
+                        {
+                            ThrowArrowOrSpear(true);
+                        }
+                        else if (WeaponManager.Instance.GetCurrenSelectedWeapon().bulletType == WeaponBulletType.SPEAR)
+                        {
+                            ThrowArrowOrSpear(false);
+                        }
+                    }
                 }
             }
         }
@@ -123,12 +169,14 @@ public class PlayerController
             if(Input.GetMouseButtonDown(1))
             {
                 playerView.zoomCameraAnim.Play(AnimationTags.ZOOM_IN_ANIM);
-                playerView.crosshair.SetActive(false);
+                GameManager.Instance.crossHair.SetActive(false);
+                //playerView.crosshair.SetActive(false);
             }
             if (Input.GetMouseButtonUp(1))
             {
                 playerView.zoomCameraAnim.Play(AnimationTags.ZOOM_OUT_ANIM);
-                playerView.crosshair.SetActive(false);
+                GameManager.Instance.crossHair.SetActive(true);
+                //playerView.crosshair.SetActive(true);
             }
         }
 
@@ -170,12 +218,57 @@ public class PlayerController
         
         if(Physics.Raycast(playerView.mainCam.transform.position, playerView.mainCam.transform.forward, out hit))
         {
-
-            Debug.Log("WE HIT " + hit.transform.gameObject.name);
-            //if(hit.transform.tag == Tags.ENEMY_TAG)
-            //{
-            //    hit.transform.GetComponent<HealthScript>().applydamage(damage);
-            //}
+            if (hit.transform.tag == Tags.ENEMY_TAG)
+            {
+               hit.transform.GetComponent<EnemyView>().ApplyDamage(WeaponManager.Instance.GetCurrenSelectedWeapon().weaponDamage);
+            }
         }
+    }
+
+    public void MeleeAttack()
+    {
+        Collider[] hits = Physics.OverlapSphere(playerView.attack_Point.transform.position, playerView.radius, playerView.layerMask);
+
+        if (hits.Length > 0)
+        {
+            hits[0].gameObject.GetComponent<EnemyView>().ApplyDamage(WeaponManager.Instance.GetCurrenSelectedWeapon().weaponDamage);
+
+            playerView.attack_Point.gameObject.SetActive(false);
+        }
+    }
+
+    public void ApplyDamage(float damage)
+    {
+        if (playerModel.IsDead)
+            return;
+
+        playerModel.health -= damage;
+
+        //playerView.Display_HealthStats(playerModel.health);
+        GameManager.Instance.Display_HealthStats(playerModel.health);
+
+        if (playerModel.health <= 0f)
+        {
+            playerModel.IsDead = true;
+            PlayerDied();
+        }
+        
+    }
+
+    private void PlayerDied()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(Tags.ENEMY_TAG);
+
+        for(int i = 0; i < enemies.Length; i++)
+        {
+            enemies[i].GetComponent<EnemyView>().enabled = false;
+        }
+
+        //EnemyService.Instance.StopSpawning();
+        playerView.GetComponent<WeaponManager>().GetCurrenSelectedWeapon().gameObject.SetActive(false);
+        playerView.enabled = false;
+
+        GameManager.Instance.GameOver();
+        
     }
 }

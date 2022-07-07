@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75d890e90caf8f5458b621bcd6966f62, type: 3}
   m_Name: Boar
   m_EditorClassIdentifier: 
+  EnemyType: 0
   enemy_State: 1
+  health: 50
+  damage: 25
   walk_Speed: 1.5
   run_Speed: 5
-  chase_Distance: 7
+  chase_Distance: 10
   patrol_Radius_Min: 20
   patrol_Radius_Max: 60
   patrol_For_This_Time: 15

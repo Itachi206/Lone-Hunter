@@ -8,14 +8,11 @@ public class EnemyController
 {
     public EnemyView enemyView;
     public EnemyModel enemyModel;
-    public EnemyController(EnemyView _enemyView, EnemyModel _enemyModel)
+    public EnemyController(EnemyView _enemyView, EnemyModel _enemyModel, Vector3 position)
     {
         enemyModel = _enemyModel;
-        //enemyView = GameObject.Instantiate<EnemyView>(_enemyView);
-        //if(enemyModel.EnemyType.ToString() == "Cannibal")
-        //    enemyView = GameObject.Instantiate<EnemyView>(_enemyView);
-        //if (enemyModel.EnemyType.ToString() == "Boar")
-        enemyView = GameObject.Instantiate<EnemyView>(_enemyView);
+        enemyView = GameObject.Instantiate<EnemyView>(_enemyView, position, Quaternion.identity);
+        
 
         enemyView.EnemyController = this;
     }
@@ -128,6 +125,7 @@ public class EnemyController
         if(enemyModel.attack_Timer > enemyModel.wait_Before_Attack)
         {
             enemyView.enemy_Anim.Attack();
+            EnemyAttack();
             enemyModel.attack_Timer = 0f;
             //attack sound
         }
@@ -137,4 +135,62 @@ public class EnemyController
             enemyModel.enemy_State = EnemyState.CHASE;
         }
     }    
+
+    public void ApplyDamage(float damage)
+    {
+        if (enemyModel.IsDead)
+            return;
+
+        enemyModel.health -= damage;
+
+
+        if(enemyModel.enemy_State == EnemyState.PATROL)
+        {
+            enemyModel.chase_Distance = 50f;
+        }
+
+        if(enemyModel.health <= 0f)
+        {
+            enemyModel.IsDead = true;
+            EnemyDied();
+        }
+    }
+
+    private void EnemyDied()
+    {
+        if(enemyModel.EnemyType == EnemyType.Cannibal)
+        {
+            enemyView.GetComponent<Animator>().enabled = false;
+            enemyView.GetComponent<BoxCollider>().isTrigger = false;
+            enemyView.navAgent.enabled = false;
+            enemyView.enemy_Anim.enabled = false;
+            enemyModel.enemy_State = EnemyState.PATROL;
+            enemyModel.walk_Speed = 0f;
+            enemyView.StartCoroutine(enemyView.DisableGameObject());
+            enemyView.enabled = false;
+            EnemyService.Instance.EnemyDied(true);
+        }
+
+        if(enemyModel.EnemyType == EnemyType.Boar)
+        {
+            enemyView.navAgent.velocity = Vector3.zero;
+            enemyView.navAgent.isStopped = true;
+            enemyView.enemy_Anim.Dead();
+            enemyView.enabled = false;
+            enemyView.StartCoroutine(enemyView.DisableGameObject());
+            EnemyService.Instance.EnemyDied(false);
+        }
+    }
+
+    public void EnemyAttack()
+    {
+        Collider[] hits = Physics.OverlapSphere(enemyView.attack_Point.transform.position, enemyView.radius, enemyView.layerMask);
+
+        if (hits.Length > 0)
+        {
+            hits[0].gameObject.GetComponent<PlayerView>().ApplyDamage(enemyModel.damage);
+         
+            enemyView.Turn_Off_AttackPoint();
+        }
+    }
 }

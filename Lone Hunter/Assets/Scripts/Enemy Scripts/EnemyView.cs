@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyView : MonoBehaviour
+public class EnemyView : MonoBehaviour, IDamagable
 {
     public EnemyController EnemyController;
     [HideInInspector] public EnemyAnimator enemy_Anim;
@@ -11,7 +11,11 @@ public class EnemyView : MonoBehaviour
 
     [HideInInspector] public Transform target;
     public GameObject attack_Point;
-   
+    public LayerMask layerMask;
+    public float damage = 2f;
+    public float radius = 2f;
+    private float wait_For_Seconds_After_Death = 3f;
+
 
     private void Awake()
     {
@@ -51,12 +55,23 @@ public class EnemyView : MonoBehaviour
         }
     }
 
+    public void ApplyDamage(float damage)
+    {
+        EnemyController.ApplyDamage(damage);
+    }
+
+    public IEnumerator DisableGameObject()
+    {
+        yield return new WaitForSeconds(wait_For_Seconds_After_Death);
+        gameObject.SetActive(false);
+    }
+
     void Turn_On_AttackPoint()
     {
         attack_Point.SetActive(true);
     }
 
-    void Turn_Off_AttackPoint()
+    public void Turn_Off_AttackPoint()
     {
         if (attack_Point.activeInHierarchy)
         {

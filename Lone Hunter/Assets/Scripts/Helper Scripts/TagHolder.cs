@@ -39,4 +39,8 @@ public class Tags
 
     public const string PLAYER_TAG = "Player";
     public const string ENEMY_TAG = "Enemy";
+
+    public const string HEALTH_TAG = "HealthImage";
+    public const string STAMINA_TAG = "StaminaImage";
+    
 }

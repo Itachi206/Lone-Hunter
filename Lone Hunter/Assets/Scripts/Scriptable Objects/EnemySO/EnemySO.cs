@@ -7,6 +7,11 @@ public class EnemySO : ScriptableObject
 {
     public EnemyType EnemyType;
     public EnemyState enemy_State;
+
+    [Header("Health Parameters")]
+    public float health;
+    public float damage;
+
     [Header("Walk Parameters")]
     public float walk_Speed;
     public float run_Speed;
