@@ -13,8 +13,8 @@ public class EnemyController
         enemyModel = _enemyModel;
         enemyView = GameObject.Instantiate<EnemyView>(_enemyView, position, Quaternion.identity);
         
-
         enemyView.EnemyController = this;
+        EnemyService.Instance.currentEnemy = this;
     }
 
     internal void PatrolState()
@@ -34,7 +34,7 @@ public class EnemyController
 
         if (enemyView.navAgent.velocity.sqrMagnitude > 0)
         {
-            enemyView.enemy_Anim.Walk(true);
+            enemyView.enemy_Anim.Walk(true);            
         }
         else
         {
@@ -75,7 +75,7 @@ public class EnemyController
 
         if (enemyView.navAgent.velocity.sqrMagnitude > 0)
         {
-            enemyView.enemy_Anim.Run(true);
+            enemyView.enemy_Anim.Run(true);            
         }
         else
         {
@@ -112,7 +112,7 @@ public class EnemyController
             {
                 enemyModel.chase_Distance = enemyModel.current_Chase_Distance;
             }
-        }
+        }        
     }
 
     internal void AttackState()
@@ -127,13 +127,21 @@ public class EnemyController
             enemyView.enemy_Anim.Attack();
             EnemyAttack();
             enemyModel.attack_Timer = 0f;
+            if(EnemyService.Instance.currentEnemy.enemyModel.EnemyType == EnemyType.Boar)
+            {
+                SoundManager.Instance.Play(Sounds.Boar_Attack);
+            }
+            else if (EnemyService.Instance.currentEnemy.enemyModel.EnemyType == EnemyType.Enemy)
+            {
+                SoundManager.Instance.Play(Sounds.Enemy_Attack);
+            }
             //attack sound
         }
 
         if(Vector3.Distance(enemyView.transform.position, enemyView.target.position) > enemyModel.attack_Distance + enemyModel.chase_After_Attack_distance)
         {
             enemyModel.enemy_State = EnemyState.CHASE;
-        }
+        }        
     }    
 
     public void ApplyDamage(float damage)
@@ -147,6 +155,7 @@ public class EnemyController
         if(enemyModel.enemy_State == EnemyState.PATROL)
         {
             enemyModel.chase_Distance = 50f;
+            SoundManager.Instance.Play(Sounds.Enemy_Scream);
         }
 
         if(enemyModel.health <= 0f)
@@ -158,18 +167,6 @@ public class EnemyController
 
     private void EnemyDied()
     {
-        if(enemyModel.EnemyType == EnemyType.Cannibal)
-        {
-            enemyView.GetComponent<Animator>().enabled = false;
-            enemyView.GetComponent<BoxCollider>().isTrigger = false;
-            enemyView.navAgent.enabled = false;
-            enemyView.enemy_Anim.enabled = false;
-            enemyModel.enemy_State = EnemyState.PATROL;
-            enemyModel.walk_Speed = 0f;
-            enemyView.StartCoroutine(enemyView.DisableGameObject());
-            enemyView.enabled = false;
-            EnemyService.Instance.EnemyDied(true);
-        }
 
         if(enemyModel.EnemyType == EnemyType.Boar)
         {
@@ -178,12 +175,28 @@ public class EnemyController
             enemyView.enemy_Anim.Dead();
             enemyView.enabled = false;
             enemyView.StartCoroutine(enemyView.DisableGameObject());
-            EnemyService.Instance.EnemyDied(false);
+            PlayerService.Instance.Activeplayer.playerModel.enemy_Killed++;
+            SoundManager.Instance.Play(Sounds.Boar_Death);
+            
         }
+        else 
+        {
+            enemyView.GetComponent<Animator>().enabled = false;
+            enemyView.GetComponent<BoxCollider>().isTrigger = false;
+            enemyView.navAgent.enabled = false;
+            enemyView.enemy_Anim.enabled = false;
+            enemyModel.enemy_State = EnemyState.PATROL;
+            enemyModel.walk_Speed = 0f;
+            enemyView.StartCoroutine(enemyView.DisableGameObject());
+            enemyView.enabled = false;            
+            PlayerService.Instance.Activeplayer.playerModel.enemy_Killed++;
+            SoundManager.Instance.Play(Sounds.Enemy_Death);
+        }
+        GameManager.Instance.UpdateEnemyKilledUI(PlayerService.Instance.Activeplayer.playerModel.enemy_Killed);
     }
 
     public void EnemyAttack()
-    {
+    {      
         Collider[] hits = Physics.OverlapSphere(enemyView.attack_Point.transform.position, enemyView.radius, enemyView.layerMask);
 
         if (hits.Length > 0)

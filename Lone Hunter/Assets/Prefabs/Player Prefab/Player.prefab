@@ -1255,7 +1255,7 @@ MonoBehaviour:
   weaponDamage: 25
   weapon_Aim: 2
   fireType: 0
-  bulletType: 1
+  bulletType: 2
   attack_Point: {fileID: 0}
 --- !u!1001 &2253491846309202851
 PrefabInstance:

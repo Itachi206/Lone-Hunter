@@ -34,7 +34,11 @@ public class PlayerModel
     public bool is_Crouching;
     public bool IsDead;
     public bool is_Zoomed;
-    public bool is_Aiming;  
+    public bool is_Aiming;
+
+    //score UI
+    public int enemy_Killed;
+    public int boar_Killed;
     
     public PlayerModel(PlayerSO _playerSO)
     {
@@ -54,7 +58,10 @@ public class PlayerModel
         sprint_ThreShold = _playerSO.sprint_ThreShold;
 
         fireRate = _playerSO.fireRate;        
-        damage = _playerSO.damage;    
+        damage = _playerSO.damage;
+
+        enemy_Killed = _playerSO.enemy_Killed;
+        boar_Killed = _playerSO.boar_Killed;
     }
 
 }

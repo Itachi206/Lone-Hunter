@@ -9,5 +9,5 @@ public enum EnemyState
 public enum EnemyType
 {
     Boar,
-    Cannibal
+    Enemy
 }

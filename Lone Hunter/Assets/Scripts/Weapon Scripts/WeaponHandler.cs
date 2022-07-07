@@ -19,6 +19,7 @@ public enum WeaponBulletType
 { 
     NONE,
     BULLET,
+    SHOTGUN,
     ARROW,
     SPEAR
 }

@@ -14,6 +14,7 @@ public class PlayerController
         playerView = GameObject.Instantiate<PlayerView>(_playerView);
 
         playerView.PlayerController = this;
+        PlayerService.Instance.Activeplayer = this;
     }
 
     public void PlayerMovement()
@@ -22,7 +23,7 @@ public class PlayerController
         playerModel.move_direction = playerView.transform.TransformDirection(playerModel.move_direction);
         playerModel.move_direction *= playerModel.player_Speed * Time.deltaTime;
         ApplyGravity();
-        playerView.character_Controller.Move(playerModel.move_direction);
+        playerView.character_Controller.Move(playerModel.move_direction);        
     }
 
     public void ApplyGravity()
@@ -65,7 +66,6 @@ public class PlayerController
                 playerModel.player_Speed = playerModel.move_Speed;
             }
 
-            //playerView.Display_StaminaStats(playerModel.sprint_Value);
             GameManager.Instance.Display_StaminaStats(playerModel.sprint_Value);
         }
         else
@@ -73,7 +73,6 @@ public class PlayerController
             if(playerModel.sprint_Value != 100f)
             {
                 playerModel.sprint_Value += (playerModel.sprint_ThreShold / 2f) * Time.deltaTime;
-                //playerView.Display_StaminaStats(playerModel.sprint_Value);
                 GameManager.Instance.Display_StaminaStats(playerModel.sprint_Value);
 
                 if (playerModel.sprint_Value > 100f)
@@ -110,7 +109,7 @@ public class PlayerController
             if(Input.GetMouseButton(0) && Time.time > playerModel.nextTimeToFire)
             {
                 playerModel.nextTimeToFire = Time.time + 1f / playerModel.fireRate;
-                WeaponManager.Instance.GetCurrenSelectedWeapon().ShootAnimation();
+                SoundManager.Instance.PlayWeaponSound(WeaponSound.Assualt);
                 BulletFired();
             }
         }
@@ -121,12 +120,21 @@ public class PlayerController
                 if(WeaponManager.Instance.GetCurrenSelectedWeapon().tag == Tags.AXE_TAG)
                 {
                     WeaponManager.Instance.GetCurrenSelectedWeapon().ShootAnimation();
+                    SoundManager.Instance.PlayWeaponSound(WeaponSound.AXE);
                     MeleeAttack();
                 }
 
                 if(WeaponManager.Instance.GetCurrenSelectedWeapon().bulletType == WeaponBulletType.BULLET)
                 {
                     WeaponManager.Instance.GetCurrenSelectedWeapon().ShootAnimation();
+                    SoundManager.Instance.PlayWeaponSound(WeaponSound.Revolver);
+                    BulletFired();
+                }
+
+                if (WeaponManager.Instance.GetCurrenSelectedWeapon().bulletType == WeaponBulletType.SHOTGUN)
+                {
+                    WeaponManager.Instance.GetCurrenSelectedWeapon().ShootAnimation();
+                    SoundManager.Instance.PlayWeaponSound(WeaponSound.Shotgun_Shoot);
                     BulletFired();
                 }
                 else
@@ -169,14 +177,12 @@ public class PlayerController
             if(Input.GetMouseButtonDown(1))
             {
                 playerView.zoomCameraAnim.Play(AnimationTags.ZOOM_IN_ANIM);
-                GameManager.Instance.crossHair.SetActive(false);
-                //playerView.crosshair.SetActive(false);
+                GameManager.Instance.crossHair.SetActive(false);                
             }
             if (Input.GetMouseButtonUp(1))
             {
                 playerView.zoomCameraAnim.Play(AnimationTags.ZOOM_OUT_ANIM);
                 GameManager.Instance.crossHair.SetActive(true);
-                //playerView.crosshair.SetActive(true);
             }
         }
 
@@ -200,12 +206,14 @@ public class PlayerController
     {
         if(throwArrow)
         {
+            SoundManager.Instance.PlayWeaponSound(WeaponSound.Bow);
             GameObject arrow = playerView.InstantiateArrow();
             arrow.transform.position = playerView.arrow_Bow_StartPosition.position;
             arrow.GetComponent<ArrowBowScript>().Launch(playerView.mainCam);
         }
         else
         {
+            SoundManager.Instance.PlayWeaponSound(WeaponSound.Spear);
             GameObject spear = playerView.InstantiateSpear();
             spear.transform.position = playerView.arrow_Bow_StartPosition.position;
             spear.GetComponent<ArrowBowScript>().Launch(playerView.mainCam);
@@ -213,7 +221,7 @@ public class PlayerController
     }
 
     private void BulletFired()
-    {
+    {       
         RaycastHit hit;
         
         if(Physics.Raycast(playerView.mainCam.transform.position, playerView.mainCam.transform.forward, out hit))
@@ -243,8 +251,7 @@ public class PlayerController
             return;
 
         playerModel.health -= damage;
-
-        //playerView.Display_HealthStats(playerModel.health);
+        
         GameManager.Instance.Display_HealthStats(playerModel.health);
 
         if (playerModel.health <= 0f)
@@ -263,12 +270,10 @@ public class PlayerController
         {
             enemies[i].GetComponent<EnemyView>().enabled = false;
         }
-
-        //EnemyService.Instance.StopSpawning();
+        
         playerView.GetComponent<WeaponManager>().GetCurrenSelectedWeapon().gameObject.SetActive(false);
         playerView.enabled = false;
 
-        GameManager.Instance.GameOver();
-        
+        GameManager.Instance.GameOver();        
     }
 }
