@@ -65,14 +65,16 @@ public class PlayerController
                 playerModel.player_Speed = playerModel.move_Speed;
             }
 
-            playerView.Display_StaminaStats(playerModel.sprint_Value);
+            //playerView.Display_StaminaStats(playerModel.sprint_Value);
+            GameManager.Instance.Display_StaminaStats(playerModel.sprint_Value);
         }
         else
         {
             if(playerModel.sprint_Value != 100f)
             {
                 playerModel.sprint_Value += (playerModel.sprint_ThreShold / 2f) * Time.deltaTime;
-                playerView.Display_StaminaStats(playerModel.sprint_Value);
+                //playerView.Display_StaminaStats(playerModel.sprint_Value);
+                GameManager.Instance.Display_StaminaStats(playerModel.sprint_Value);
 
                 if (playerModel.sprint_Value > 100f)
                 {
@@ -142,6 +144,19 @@ public class PlayerController
                             ThrowArrowOrSpear(false);
                         }
                     }
+                    else
+                    {
+                        WeaponManager.Instance.GetCurrenSelectedWeapon().ShootAnimation();
+
+                        if (WeaponManager.Instance.GetCurrenSelectedWeapon().bulletType == WeaponBulletType.ARROW)
+                        {
+                            ThrowArrowOrSpear(true);
+                        }
+                        else if (WeaponManager.Instance.GetCurrenSelectedWeapon().bulletType == WeaponBulletType.SPEAR)
+                        {
+                            ThrowArrowOrSpear(false);
+                        }
+                    }
                 }
             }
         }
@@ -154,12 +169,14 @@ public class PlayerController
             if(Input.GetMouseButtonDown(1))
             {
                 playerView.zoomCameraAnim.Play(AnimationTags.ZOOM_IN_ANIM);
-                playerView.crosshair.SetActive(false);
+                GameManager.Instance.crossHair.SetActive(false);
+                //playerView.crosshair.SetActive(false);
             }
             if (Input.GetMouseButtonUp(1))
             {
                 playerView.zoomCameraAnim.Play(AnimationTags.ZOOM_OUT_ANIM);
-                playerView.crosshair.SetActive(true);
+                GameManager.Instance.crossHair.SetActive(true);
+                //playerView.crosshair.SetActive(true);
             }
         }
 
@@ -227,9 +244,10 @@ public class PlayerController
 
         playerModel.health -= damage;
 
-        playerView.Display_HealthStats(playerModel.health);
+        //playerView.Display_HealthStats(playerModel.health);
+        GameManager.Instance.Display_HealthStats(playerModel.health);
 
-        if(playerModel.health <= 0f)
+        if (playerModel.health <= 0f)
         {
             playerModel.IsDead = true;
             PlayerDied();
@@ -246,11 +264,11 @@ public class PlayerController
             enemies[i].GetComponent<EnemyView>().enabled = false;
         }
 
-        EnemyService.Instance.StopSpawning();
+        //EnemyService.Instance.StopSpawning();
         playerView.GetComponent<WeaponManager>().GetCurrenSelectedWeapon().gameObject.SetActive(false);
         playerView.enabled = false;
-        Debug.Log("Player is Dead");
 
-        //Game Over Screen is here with restart option
+        GameManager.Instance.GameOver();
+        
     }
 }

@@ -12,7 +12,7 @@ public class PlayerView : MonoBehaviour, IDamagable
     
     internal Animator zoomCameraAnim;
     internal Camera mainCam;
-    internal GameObject crosshair;
+    //internal GameObject crosshair;
     public GameObject arrow_Prefab, spear_prefab;
     public Transform arrow_Bow_StartPosition;
 
@@ -28,7 +28,7 @@ public class PlayerView : MonoBehaviour, IDamagable
         character_Controller = GetComponent<CharacterController>();
         look_Root = transform.GetChild(0);
         zoomCameraAnim = transform.Find(Tags.LOOK_ROOT).transform.Find(Tags.ZOOM_CAMERA).GetComponent<Animator>();
-        crosshair = GameObject.FindWithTag(Tags.CROSSHAIR);
+        //crosshair = GameObject.FindWithTag(Tags.CROSSHAIR);
         mainCam = Camera.main;
         health_Stats = GameObject.FindGameObjectWithTag(Tags.HEALTH_TAG);
         stamina_Stats = GameObject.FindGameObjectWithTag(Tags.STAMINA_TAG);
@@ -53,17 +53,17 @@ public class PlayerView : MonoBehaviour, IDamagable
         PlayerController.ApplyDamage(damage);
     }
 
-    public void Display_HealthStats(float healthValue)
-    {
-        healthValue /= 100f;
-        health_Stats.GetComponent<Image>().fillAmount = healthValue;
-    }
+    //public void Display_HealthStats(float healthValue)
+    //{
+    //    healthValue /= 100f;
+    //    health_Stats.GetComponent<Image>().fillAmount = healthValue;
+    //}
 
-    public void Display_StaminaStats(float staminaValue)
-    {
-        staminaValue /= 100f;
-        stamina_Stats.GetComponent<Image>().fillAmount = staminaValue;
-    }
+    //public void Display_StaminaStats(float staminaValue)
+    //{
+    //    staminaValue /= 100f;
+    //    stamina_Stats.GetComponent<Image>().fillAmount = staminaValue;
+    //}
 
     internal GameObject InstantiateArrow()
     {

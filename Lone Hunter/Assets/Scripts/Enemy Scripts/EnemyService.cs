@@ -19,7 +19,7 @@ public class EnemyService : GenericMonoSingleton<EnemyService>
         initital_Boar_Count = boar_Count;
 
         SpawnRandomEnemy();
-        StartCoroutine(CheckToSpawnEnemies());
+        //StartCoroutine(CheckToSpawnEnemies());
 
     }
 
@@ -64,14 +64,14 @@ public class EnemyService : GenericMonoSingleton<EnemyService>
         boar_Count = 0;
     }
 
-    IEnumerator CheckToSpawnEnemies()
-    {
-        yield return new WaitForSeconds(wait_Before_Spawn_Enemy_Time);
-        SpawnEnemy();
-        SpawnBoar();
+    //IEnumerator CheckToSpawnEnemies()
+    //{
+    //    yield return new WaitForSeconds(wait_Before_Spawn_Enemy_Time);
+    //    SpawnEnemy();
+    //    SpawnBoar();
 
-        StartCoroutine(CheckToSpawnEnemies());
-    }
+    //    StartCoroutine(CheckToSpawnEnemies());
+    //}
 
     public void EnemyDied(bool isEnemy)
     {
@@ -95,8 +95,8 @@ public class EnemyService : GenericMonoSingleton<EnemyService>
         }
     }
 
-    public void StopSpawning()
-    {
-        StopCoroutine(CheckToSpawnEnemies());
-    }
+    //public void StopSpawning()
+    //{
+    //    StopCoroutine(CheckToSpawnEnemies());
+    //}
 }

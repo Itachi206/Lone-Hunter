@@ -18,7 +18,7 @@ MonoBehaviour:
   damage: 25
   walk_Speed: 1.5
   run_Speed: 5
-  chase_Distance: 7
+  chase_Distance: 10
   patrol_Radius_Min: 20
   patrol_Radius_Max: 60
   patrol_For_This_Time: 15

@@ -298,7 +298,7 @@ MonoBehaviour:
   playerRoot: {fileID: 2253491846146831441}
   lookRoot: {fileID: 2253491846679950356}
   invert_Mouse: 0
-  mouse_sensitivity: 5
+  mouse_sensitivity: 4
   default_look_limit: {x: -70, y: 80}
 --- !u!1 &2253491847473114879
 GameObject:
