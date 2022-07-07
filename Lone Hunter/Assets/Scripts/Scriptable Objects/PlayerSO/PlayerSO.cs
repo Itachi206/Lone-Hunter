@@ -26,5 +26,8 @@ public class PlayerSO : ScriptableObject
     [Header("Attack Parameters")]
     public float fireRate;    
     public float damage;
-    
+
+    [Header("Score")]
+    public int enemy_Killed;
+    public int boar_Killed;
 }
